@@ -1,0 +1,401 @@
+/* ==========================================================================
+   1. VARIÁVEIS, IMPORTAÇÃO DE FONTES E RESET GLOBAL
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"); /* Importa a fonte Poppins do Google Fonts com variações de peso */
+
+/* Variáveis globais para controlar dimensões e posições dinâmicas das miniaturas */
+:root {
+  --thumb-width: 135px; /* Define a largura padrão das miniaturas */
+  --thumb-height: 200px; /* Define a altura padrão das miniaturas */
+  --thumb-bottom: 50px; /* Define a distância da miniatura até o rodapé da tela */
+  --thumb-left: 50%; /* Define a posição horizontal inicial do container de miniaturas */
+}
+
+* {
+  margin: 0; /* Remove a margem padrão de todos os elementos */
+  padding: 0; /* Remove o espaçamento interno padrão de todos os elementos */
+  box-sizing: border-box; /* Inclui bordas e paddings no cálculo da largura/altura total */
+  text-decoration: none; /* Remove sublinhado padrão dos links */
+  font-family: "Poppins", sans-serif; /* Aplica a fonte Poppins globalmente */
+}
+
+/* ==========================================================================
+   2. ESTRUTURA BASE (BODY E HEADER)
+   ========================================================================== */
+
+body {
+  background-color: #000; /* Define a cor de fundo da página como preta */
+  color: #eee; /* Define a cor padrão dos textos como cinza claro */
+  font-size: 12px; /* Define o tamanho de fonte base da aplicação */
+  overflow: hidden; /* Oculta as barras de rolagem vertical e horizontal */
+}
+
+.header {
+  width: 80%; /* Define que o cabeçalho ocupará 80% da largura da tela */
+  height: 50px; /* Fixa a altura do cabeçalho em 50px */
+  display: flex; /* Ativa o layout Flexbox para alinhar itens filhos */
+  align-items: center; /* Alinha os links verticalmente ao centro */
+  position: relative; /* Define posicionamento relativo para permitir camada z-index */
+  z-index: 10; /* Coloca o cabeçalho acima dos outros elementos na pilha visual */
+  margin: auto; /* Centraliza o cabeçalho horizontalmente na página */
+}
+
+.header a {
+  color: #eee; /* Cor cinza claro para os links do cabeçalho */
+  margin-right: 40px; /* Cria um espaçamento de 40px à direita de cada link */
+  font-weight: 300; /* Define peso leve/fino para a fonte dos links */
+}
+
+/* ==========================================================================
+   3. CONTAINER PRINCIPAL E SLIDES (LISTA)
+   ========================================================================== */
+
+.container {
+  height: 100vh; /* Define altura igual a 100% da altura da tela (viewport) */
+  width: 100vw; /* Define largura igual a 100% da largura da tela (viewport) */
+  margin-top: -50px; /* Recua 50px para cima, compensando a altura do header */
+  position: relative; /* Permite que os itens filhos sejam posicionados absolutamente */
+}
+
+.container .list .list-item {
+  width: 100%; /* Faz o slide ocupar toda a largura do container */
+  height: 100%; /* Faz o slide ocupar toda a altura do container */
+  position: absolute; /* Empilha todos os slides uns sobre os outros */
+  inset: 0; /* Atalho para top:0, right:0, bottom:0, left:0 */
+}
+
+.container .list .list-item img {
+  object-fit: cover; /* Recorta e ajusta a imagem mantendo a proporção sem distorcer */
+  width: 100%; /* Imagem ocupa toda a largura do slide */
+  height: 100%; /* Imagem ocupa toda a altura do slide */
+  filter: brightness(50%); /* Escurece a imagem em 50% para dar destaque ao texto */
+}
+
+/* ==========================================================================
+   4. CONTEÚDO DO SLIDE (TEXTOS E BOTÕES)
+   ========================================================================== */
+
+.container .list .list-item .content {
+  position: absolute; /* Posiciona o bloco de texto de forma absoluta sobre a imagem */
+  top: 20%; /* Distância de 20% em relação ao topo da tela */
+  right: 10%; /* Distância de 10% em relação ao lado direito da tela */
+  padding-right: 30%; /* Espaçamento interno à direita para evitar estouro de linha */
+  width: 80%; /* Define a largura máxima da caixa de texto */
+  color: #eee; /* Cor cinza claro do texto */
+  text-shadow: 0 5px 10px #0004; /* Aplica sombra preta translúcida no texto para legibilidade */
+}
+
+.container .list .list-item .title {
+  font-size: 5em; /* Define um tamanho de fonte grande para o título principal */
+  font-weight: 700; /* Aplica peso negrito ao título */
+  line-height: 1.3em; /* Ajusta o espaçamento entrelinhas */
+}
+
+.container .list .list-item .description {
+  font-size: 1.5em; /* Define tamanho de fonte médio para a descrição */
+}
+
+.container .list .list-item .buttons {
+  display: grid; /* Ativa CSS Grid para organizar os botões em colunas */
+  grid-template-columns: repeat(2, 130px); /* Cria 2 colunas com 130px de largura cada */
+  grid-template-rows: 40px; /* Define altura de 40px para a linha de botões */
+  margin-top: 20px; /* Adiciona margem acima da área de botões */
+  gap: 5px; /* Espaçamento de 5px entre os botões */
+}
+
+.container .list .list-item .buttons button {
+  border: none; /* Remove a borda padrão do botão */
+  background-color: #eee; /* Cor de fundo inicial cinza claro */
+  letter-spacing: 3px; /* Aumenta o espaçamento entre as letras das palavras */
+  font-weight: 500; /* Define peso médio de fonte */
+  cursor: pointer; /* Transforma o ponteiro do mouse em mãozinha ao passar por cima */
+  text-transform: uppercase; /* Converte o texto do botão para maiúsculas */
+  transition: 0.3s; /* Transição suave de 0.3 segundos para efeitos hover */
+}
+
+.container .list .list-item .buttons button:hover {
+  background-color: transparent; /* Torna o fundo transparente no hover */
+  border: 1px solid #eee; /* Adiciona borda fina branca no hover */
+  color: #eee; /* Altera a cor do texto para cinza claro no hover */
+}
+
+.container .list .list-item .buttons button:nth-child(2) {
+  background-color: transparent; /* Segundo botão inicia com fundo transparente */
+  border: 1px solid #eee; /* Segundo botão inicia com borda sólida branca */
+  color: #eee; /* Texto cinza claro no segundo botão */
+}
+
+.container .list .list-item .buttons button:nth-child(2):hover {
+  background-color: #eee; /* Preenche o segundo botão com cinza claro no hover */
+  color: #000; /* Altera a cor do texto do segundo botão para preto no hover */
+}
+
+/* ==========================================================================
+   5. MINIATURAS (THUMBNAILS) E SETAS DE NAVEGAÇÃO
+   ========================================================================== */
+
+.container .thumb {
+  position: absolute; /* Posicionamento absoluto dentro do container */
+  bottom: var(--thumb-bottom); /* Posição vertical controlada pela variável CSS */
+  left: var(--thumb-left); /* Posição horizontal controlada pela variável CSS */
+  display: flex; /* Alinha as miniaturas lado a lado em linha */
+  gap: 20px; /* Distância de 20px entre cada miniatura */
+  z-index: 5; /* Mantém as miniaturas acima do slide principal */
+}
+
+.container .thumb .thumb-item {
+  width: var(--thumb-width); /* Largura definida dinamicamente por variável */
+  height: var(--thumb-height); /* Altura definida dinamicamente por variável */
+  position: relative; /* Permite posicionar elementos internos de forma absoluta */
+  flex-shrink: 0; /* Impede que a miniatura encolha se o espaço for menor */
+  z-index: 3; /* Garante a ordem de empilhamento do item */
+}
+
+.container .thumb .thumb-item img {
+  width: 100%; /* Faz a imagem preencher a largura total da miniatura */
+  height: 100%; /* Faz a imagem preencher a altura total da miniatura */
+  object-fit: cover; /* Corta a imagem proporcionalmente sem distorcer */
+  border-radius: 10px; /* Arredonda os cantos da miniatura em 10px */
+  filter: brightness(80%); /* Aplica leve escurecimento na imagem da miniatura */
+}
+
+.container .thumb .content {
+  position: absolute; /* Posiciona o texto/legenda dentro da miniatura */
+  bottom: 10px; /* Distância de 10px em relação ao rodapé da miniatura */
+  left: 10px; /* Distância de 10px em relação ao canto esquerdo da miniatura */
+}
+
+.container .arrows {
+  display: flex; /* Alinha as duas setas lado a lado */
+  align-items: center; /* Centraliza verticalmente o conteúdo dos botões */
+  gap: 10px; /* Espaço de 10px entre os botões de navegação */
+  position: absolute; /* Posiciona os botões sobre a tela */
+  bottom: calc(var(--thumb-bottom) + 70px); /* Ajusta altura das setas proporcionalmente à miniatura */
+  left: 120px; /* Posiciona as setas a 120px da borda esquerda da tela */
+  z-index: 5; /* Mantém as setas visíveis acima dos slides */
+}
+
+.container .arrows button {
+  border-radius: 10px; /* Cantos arredondados para os botões das setas */
+  border: none; /* Remove a borda padrão do botão */
+  padding: 12px 17px; /* Define o espaçamento interno do botão da seta */
+  background-color: #eee4; /* Fundo cinza claro semiauto/translúcido (hex com alfa) */
+  color: #eee; /* Cor do ícone/texto da seta em cinza claro */
+  cursor: pointer; /* Aponta a mãozinha ao passar o cursor */
+  font-weight: 700; /* Deixa o ícone da seta em negrito */
+  font-size: 1.5em; /* Aumenta o tamanho da seta */
+  transition: 0.3s; /* Transição suave de mudança de estado no hover */
+}
+
+.container .arrows button:hover {
+  background-color: #eee; /* Preenche o botão com fundo sólido no hover */
+  color: #000; /* Muda a cor da seta para preto no hover */
+}
+
+/* ==========================================================================
+   6. ANIMAÇÕES DA LISTA DE MINIATURAS
+   ========================================================================== */
+
+.container.next .thumb {
+  animation: efeitoNextThumb 0.5s linear 1 forwards; /* Aplica animação no container de thumbs ao avançar */
+}
+
+@keyframes efeitoNextThumb {
+  from {
+    transform: translateX(150px); /* Desloca o grupo de miniaturas 150px para a direita no início */
+  }
+}
+
+.container.next .thumb .thumb-item:nth-last-child(1) {
+  animation: efeitoUltimaThumb 0.5s linear 1 forwards; /* Anima a última miniatura que surge no final da lista */
+}
+
+@keyframes efeitoUltimaThumb {
+  from {
+    width: 0; /* Inicia a nova miniatura com largura zero */
+    opacity: 0; /* Inicia totalmente transparente */
+  }
+}
+
+.container.back .thumb .thumb-item:nth-child(1) {
+  animation: efeitoPrimeiraThumb 0.5s linear 1 forwards; /* Anima a primeira miniatura ao voltar o slide */
+}
+
+@keyframes efeitoPrimeiraThumb {
+  from {
+    width: 0; /* Inicia encolhida ao voltar */
+    opacity: 0; /* Inicia transparente ao voltar */
+  }
+}
+
+/* ==========================================================================
+   7. ANIMAÇÕES DE TEXTO DO SLIDE ATIVO
+   ========================================================================== */
+
+.container .list .list-item:nth-child(1) {
+  z-index: 1; /* Mantém o primeiro item da lista visível na base de empilhamento */
+}
+
+.container .list .list-item:nth-child(1) .content .title,
+.container .list .list-item:nth-child(1) .content .description,
+.container .list .list-item:nth-child(1) .content .buttons {
+  transform: translateY(50px); /* Move os textos 50px para baixo no estado inicial */
+  filter: blur(20px); /* Aplica desfoque de 20px no texto antes da animação */
+  opacity: 0; /* Mantém os textos invisíveis antes de iniciar a entrada */
+  animation: exibeTexto 0.5s 0.2s linear 1 forwards; /* Animação de entrada fluida para o texto */
+}
+
+@keyframes exibeTexto {
+  to {
+    transform: translateY(0); /* Retorna o texto para sua posição vertical original */
+    filter: blur(0); /* Remove completamente o desfoque */
+    opacity: 1; /* Torna o texto 100% visível */
+  }
+}
+
+.container .list .list-item:nth-child(1) .content .title {
+  animation-delay: 1.2s; /* Atrasa a animação do título em 1.2 segundos */
+}
+
+.container .list .list-item:nth-child(1) .content .description {
+  animation-delay: 1.6s; /* Atrasa a animação da descrição em 1.6 segundos */
+}
+
+.container .list .list-item:nth-child(1) .content .buttons {
+  animation-delay: 2s; /* Atrasa a animação dos botões em 2 segundos */
+}
+
+/* ==========================================================================
+   8. EFEITOS DE EXPANSÃO E ENCOLHIMENTO DAS IMAGENS PRINCIPAIS
+   ========================================================================== */
+
+.container.next .list .list-item:nth-child(1) {
+  z-index: 2; /* Garante que a imagem em transição fique no topo durante o efeito */
+}
+
+.container.next .list .list-item:nth-child(1) img {
+  width: var(--thumb-width);   /* Inicia a animação com a largura idêntica à da miniatura */
+  height: var(--thumb-height); /* Inicia com a altura idêntica à da miniatura */
+  position: absolute; /* Posiciona a imagem absolutamente para animar a expansão */
+  bottom: var(--thumb-bottom); /* Alinha o ponto de partida com a posição da miniatura */
+  left: var(--thumb-left);     /* Alinha o ponto de partida com o canto da miniatura */
+  border-radius: 10px; /* Começa com cantos arredondados como a miniatura */
+  animation: expandeImagem 0.5s linear 1 forwards; /* Aplica animação de crescimento da imagem */
+}
+
+@keyframes expandeImagem {
+  to {
+    bottom: 0; /* Expande até encostar na borda inferior da tela */
+    left: 0; /* Expande até encostar na borda esquerda da tela */
+    width: 100%; /* Ocupa a largura total da janela */
+    height: 100%; /* Ocupa a altura total da janela */
+    border-radius: 0; /* Remove os cantos arredondados na tela cheia */
+  }
+}
+
+.container.back .list .list-item:nth-child(1) img {
+  position: absolute; /* Posicionamento absoluto para animação de recuo */
+  bottom: 0; /* Começa ocupando a tela cheia a partir do rodapé */
+  left: 0; /* Começa ocupando a tela cheia a partir da esquerda */
+  z-index: 2; /* Mantém no topo enquanto encolhe */
+  animation: sumiImagem 0.5s linear 1 forwards; /* Executa a animação de encolhimento */
+}
+
+@keyframes sumiImagem {
+  to {
+    width: var(--thumb-width);   /* Encolhe até atingir a largura da miniatura */
+    height: var(--thumb-height); /* Encolhe até atingir a altura da miniatura */
+    border-radius: 10px; /* Recupera os cantos arredondados */
+    left: var(--thumb-left);     /* Retorna exatamente para a posição horizontal da miniatura */
+    bottom: var(--thumb-bottom); /* Retorna exatamente para a posição vertical da miniatura */
+  }
+}
+
+/* ==========================================================================
+   9. REGRAS DE RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
+
+/* Tablets e telas médias (até 992px) */
+@media screen and (max-width: 992px) {
+  :root {
+    --thumb-width: 110px; /* Reduz a largura da miniatura para tablets */
+    --thumb-height: 160px; /* Reduz a altura da miniatura para tablets */
+  }
+
+  .container .list .list-item .content {
+    padding-right: 15%; /* Reduz o espaçamento à direita para aproveitar melhor a tela */
+  }
+
+  .container .list .list-item .title {
+    font-size: 3.5em; /* Reduz a fonte do título para não quebrar excessivamente */
+  }
+}
+
+/* Celulares em geral (até 768px) */
+@media screen and (max-width: 768px) {
+  :root {
+    --thumb-width: 90px; /* Reduz a largura das miniaturas para telas de celulares */
+    --thumb-height: 130px; /* Reduz a altura das miniaturas para telas de celulares */
+    --thumb-bottom: 25px; /* Aproxima as miniaturas do fundo da tela */
+    --thumb-left: 50%; /* Mantém o alinhamento da metade da tela */
+  }
+
+  .header {
+    width: 90%; /* Expande a largura do cabeçalho para ocupar 90% da tela */
+  }
+
+  .header a {
+    margin-right: 20px; /* Diminui o espaçamento entre os links do cabeçalho */
+    font-size: 11px; /* Diminui o tamanho da fonte do menu */
+  }
+
+  .container .list .list-item .content {
+    top: 15%; /* Reorganiza o bloco de texto mais para o topo */
+    left: 5%; /* Alinha o texto a 5% da borda esquerda */
+    right: auto; /* Anula o alinhamento à direita prévio */
+    width: 90%; /* Faz a caixa de texto ocupar a maior parte da largura */
+    padding-right: 0; /* Zera o padding interno à direita */
+  }
+
+  .container .list .list-item .title {
+    font-size: 2.2em; /* Diminui significativamente o título para telas móbile */
+  }
+
+  .container .list .list-item .description {
+    font-size: 1.1em; /* Reduz a fonte da descrição para melhorar legibilidade */
+  }
+
+  .container .arrows {
+    left: 5%; /* Reposiciona as setas para a borda esquerda */
+    bottom: 170px; /* Levanta as setas para ficarem acima das miniaturas menores */
+  }
+
+  .container .thumb {
+    gap: 10px; /* Diminui a distância entre as miniaturas para caberem lado a lado */
+  }
+}
+
+/* Celulares pequenos (até 480px) */
+@media screen and (max-width: 480px) {
+  :root {
+    --thumb-width: 75px; /* Define o menor tamanho de largura para miniaturas */
+    --thumb-height: 110px; /* Define a menor altura para as miniaturas */
+  }
+
+  .container .list .list-item .title {
+    font-size: 1.8em; /* Ajusta o título para telas muito estreitas */
+  }
+
+  .container .list .list-item .description {
+    font-size: 0.95em; /* Ajusta a descrição para caber sem rolar a tela */
+  }
+
+  .container .thumb .content h3 {
+    font-size: 10px; /* Ajusta o título interno das miniaturas */
+  }
+
+  .container .thumb .content p {
+    font-size: 8px; /* Ajusta a legenda/descrição dentro das miniaturas */
+  }
+}
