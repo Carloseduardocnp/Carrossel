@@ -2,22 +2,22 @@
    1. VARIÁVEIS, IMPORTAÇÃO DE FONTES E RESET GLOBAL
    ========================================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"); /* Importa a fonte Poppins do Google Fonts com variações de peso */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"); /* Importa a fonte Poppins do Google Fonts com pesos 300, 400, 500 e 700 */
 
-/* Variáveis globais para controlar dimensões e posições dinâmicas das miniaturas */
 :root {
-  --thumb-width: 135px; /* Define a largura padrão das miniaturas */
-  --thumb-height: 200px; /* Define a altura padrão das miniaturas */
-  --thumb-bottom: 50px; /* Define a distância da miniatura até o rodapé da tela */
-  --thumb-left: 50%; /* Define a posição horizontal inicial do container de miniaturas */
+  --thumb-width: 135px; /* Variável: define a largura padrão das miniaturas */
+  --thumb-height: 200px; /* Variável: define a altura padrão das miniaturas */
+  --thumb-bottom: 50px; /* Variável: define a distância das miniaturas em relação à base da tela */
+  --thumb-left: 50%; /* Variável: define a posição horizontal inicial do container de miniaturas */
 }
 
 * {
-  margin: 0; /* Remove a margem padrão de todos os elementos */
+  margin: 0; /* Remove a margem externa padrão de todos os elementos */
   padding: 0; /* Remove o espaçamento interno padrão de todos os elementos */
-  box-sizing: border-box; /* Inclui bordas e paddings no cálculo da largura/altura total */
-  text-decoration: none; /* Remove sublinhado padrão dos links */
-  font-family: "Poppins", sans-serif; /* Aplica a fonte Poppins globalmente */
+  box-sizing: border-box; /* Garante que bordas e paddings sejam incluídos no cálculo de largura/altura */
+  text-decoration: none; /* Remove sublinhado padrão de links */
+  font-family:
+    "Poppins", sans-serif; /* Aplica a fonte Poppins a todo o projeto */
 }
 
 /* ==========================================================================
@@ -25,26 +25,26 @@
    ========================================================================== */
 
 body {
-  background-color: #000; /* Define a cor de fundo da página como preta */
-  color: #eee; /* Define a cor padrão dos textos como cinza claro */
-  font-size: 12px; /* Define o tamanho de fonte base da aplicação */
-  overflow: hidden; /* Oculta as barras de rolagem vertical e horizontal */
+  background-color: #000; /* Define a cor de fundo preta para a página */
+  color: #eee; /* Define a cor padrão do texto como cinza claro */
+  font-size: 16px; /* Define o tamanho base da fonte (ajustado para melhorar a proporção legível) */
+  overflow-x: hidden; /* Evita rolagem horizontal indesejada, permitindo rolagem vertical se necessário */
 }
 
 .header {
-  width: 80%; /* Define que o cabeçalho ocupará 80% da largura da tela */
-  height: 50px; /* Fixa a altura do cabeçalho em 50px */
-  display: flex; /* Ativa o layout Flexbox para alinhar itens filhos */
-  align-items: center; /* Alinha os links verticalmente ao centro */
-  position: relative; /* Define posicionamento relativo para permitir camada z-index */
-  z-index: 10; /* Coloca o cabeçalho acima dos outros elementos na pilha visual */
+  width: 80%; /* Faz o cabeçalho ocupar 80% da largura da tela */
+  height: 50px; /* Define a altura fixa do cabeçalho em 50px */
+  display: flex; /* Ativa o Flexbox para alinhar os itens internos */
+  align-items: center; /* Centraliza os links verticalmente dentro do cabeçalho */
+  position: relative; /* Permite o uso de z-index */
+  z-index: 10; /* Coloca o cabeçalho em uma camada superior na pilha visual */
   margin: auto; /* Centraliza o cabeçalho horizontalmente na página */
 }
 
 .header a {
-  color: #eee; /* Cor cinza claro para os links do cabeçalho */
+  color: #eee; /* Define a cor cinza claro para os links do menu */
   margin-right: 40px; /* Cria um espaçamento de 40px à direita de cada link */
-  font-weight: 300; /* Define peso leve/fino para a fonte dos links */
+  font-weight: 300; /* Aplica peso leve/fino à fonte dos links */
 }
 
 /* ==========================================================================
@@ -52,24 +52,26 @@ body {
    ========================================================================== */
 
 .container {
-  height: 100vh; /* Define altura igual a 100% da altura da tela (viewport) */
-  width: 100vw; /* Define largura igual a 100% da largura da tela (viewport) */
-  margin-top: -50px; /* Recua 50px para cima, compensando a altura do header */
-  position: relative; /* Permite que os itens filhos sejam posicionados absolutamente */
+  height: 100dvh; /* Usa dvh (Dynamic Viewport Height) para ajustar perfeitamente à altura real do celular */
+  width: 100vw; /* Ocupa 100% da largura da janela de visualização */
+  margin-top: -50px; /* Puxa o container 50px para cima para compensar a altura do header */
+  position: relative; /* Cria um referenciador de posicionamento absoluto para os filhos */
 }
 
 .container .list .list-item {
-  width: 100%; /* Faz o slide ocupar toda a largura do container */
-  height: 100%; /* Faz o slide ocupar toda a altura do container */
-  position: absolute; /* Empilha todos os slides uns sobre os outros */
-  inset: 0; /* Atalho para top:0, right:0, bottom:0, left:0 */
+  width: 100%; /* Faz cada slide ocupar 100% da largura */
+  height: 100%; /* Faz cada slide ocupar 100% da altura */
+  position: absolute; /* Posiciona os slides de forma absoluta (empilhados) */
+  inset: 0; /* Atalho para top: 0, right: 0, bottom: 0, left: 0 */
 }
 
 .container .list .list-item img {
-  object-fit: cover; /* Recorta e ajusta a imagem mantendo a proporção sem distorcer */
-  width: 100%; /* Imagem ocupa toda a largura do slide */
-  height: 100%; /* Imagem ocupa toda a altura do slide */
-  filter: brightness(50%); /* Escurece a imagem em 50% para dar destaque ao texto */
+  object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer as proporções */
+  width: 100%; /* Imagem com 100% da largura do slide */
+  height: 100%; /* Imagem com 100% da altura do slide */
+  filter: brightness(
+    50%
+  ); /* Escurece a imagem em 50% para destacar o texto por cima */
 }
 
 /* ==========================================================================
@@ -77,58 +79,62 @@ body {
    ========================================================================== */
 
 .container .list .list-item .content {
-  position: absolute; /* Posiciona o bloco de texto de forma absoluta sobre a imagem */
-  top: 20%; /* Distância de 20% em relação ao topo da tela */
-  right: 10%; /* Distância de 10% em relação ao lado direito da tela */
-  padding-right: 30%; /* Espaçamento interno à direita para evitar estouro de linha */
-  width: 80%; /* Define a largura máxima da caixa de texto */
-  color: #eee; /* Cor cinza claro do texto */
-  text-shadow: 0 5px 10px #0004; /* Aplica sombra preta translúcida no texto para legibilidade */
+  position: absolute; /* Posiciona o bloco de texto livremente sobre a imagem */
+  top: 20%; /* Distância de 20% do topo da tela */
+  right: 10%; /* Distância de 10% da borda direita */
+  padding-right: 30%; /* Adiciona margem interna à direita para o texto não estourar */
+  width: 80%; /* Define a largura da caixa de conteúdo */
+  color: #eee; /* Cor do texto em cinza claro */
+  text-shadow: 0 5px 10px #0004; /* Aplica sombra preta suave para legibilidade */
 }
 
 .container .list .list-item .title {
-  font-size: 5em; /* Define um tamanho de fonte grande para o título principal */
-  font-weight: 700; /* Aplica peso negrito ao título */
-  line-height: 1.3em; /* Ajusta o espaçamento entrelinhas */
+  font-size: clamp(
+    2rem,
+    5vw,
+    5em
+  ); /* Redimensiona o título fluidamente entre 2rem e 5em conforme a tela */
+  font-weight: 700; /* Deixa o título em negrito */
+  line-height: 1.3em; /* Ajusta o espaçamento entre as linhas do título */
 }
 
 .container .list .list-item .description {
-  font-size: 1.5em; /* Define tamanho de fonte médio para a descrição */
+  font-size: 1.1rem; /* Define o tamanho da fonte da descrição */
 }
 
 .container .list .list-item .buttons {
-  display: grid; /* Ativa CSS Grid para organizar os botões em colunas */
-  grid-template-columns: repeat(2, 130px); /* Cria 2 colunas com 130px de largura cada */
-  grid-template-rows: 40px; /* Define altura de 40px para a linha de botões */
-  margin-top: 20px; /* Adiciona margem acima da área de botões */
-  gap: 5px; /* Espaçamento de 5px entre os botões */
+  display: grid; /* Usa Grid Layout para organizar os botões */
+  grid-template-columns: repeat(2, 130px); /* Cria 2 colunas de 130px cada */
+  grid-template-rows: 40px; /* Define altura de 40px para os botões */
+  margin-top: 20px; /* Espaço acima da área de botões */
+  gap: 5px; /* Espaçamento entre os botões */
 }
 
 .container .list .list-item .buttons button {
   border: none; /* Remove a borda padrão do botão */
-  background-color: #eee; /* Cor de fundo inicial cinza claro */
-  letter-spacing: 3px; /* Aumenta o espaçamento entre as letras das palavras */
-  font-weight: 500; /* Define peso médio de fonte */
-  cursor: pointer; /* Transforma o ponteiro do mouse em mãozinha ao passar por cima */
-  text-transform: uppercase; /* Converte o texto do botão para maiúsculas */
-  transition: 0.3s; /* Transição suave de 0.3 segundos para efeitos hover */
+  background-color: #eee; /* Fundo cinza claro */
+  letter-spacing: 3px; /* Espaçamento entre as letras */
+  font-weight: 500; /* Peso médio da fonte */
+  cursor: pointer; /* Transforma o cursor em mãozinha ao passar por cima */
+  text-transform: uppercase; /* Transforma o texto em maiúsculas */
+  transition: 0.3s; /* Duração da transição suave de hover */
 }
 
 .container .list .list-item .buttons button:hover {
-  background-color: transparent; /* Torna o fundo transparente no hover */
+  background-color: transparent; /* Remove o fundo no hover */
   border: 1px solid #eee; /* Adiciona borda fina branca no hover */
-  color: #eee; /* Altera a cor do texto para cinza claro no hover */
+  color: #eee; /* Define texto branco no hover */
 }
 
 .container .list .list-item .buttons button:nth-child(2) {
-  background-color: transparent; /* Segundo botão inicia com fundo transparente */
-  border: 1px solid #eee; /* Segundo botão inicia com borda sólida branca */
-  color: #eee; /* Texto cinza claro no segundo botão */
+  background-color: transparent; /* Segundo botão começa com fundo transparente */
+  border: 1px solid #eee; /* Segundo botão começa com borda branca */
+  color: #eee; /* Texto branco no segundo botão */
 }
 
 .container .list .list-item .buttons button:nth-child(2):hover {
-  background-color: #eee; /* Preenche o segundo botão com cinza claro no hover */
-  color: #000; /* Altera a cor do texto do segundo botão para preto no hover */
+  background-color: #eee; /* Inverte a cor de fundo para cinza claro no hover */
+  color: #000; /* Inverte a cor do texto para preto no hover */
 }
 
 /* ==========================================================================
@@ -136,61 +142,63 @@ body {
    ========================================================================== */
 
 .container .thumb {
-  position: absolute; /* Posicionamento absoluto dentro do container */
-  bottom: var(--thumb-bottom); /* Posição vertical controlada pela variável CSS */
-  left: var(--thumb-left); /* Posição horizontal controlada pela variável CSS */
-  display: flex; /* Alinha as miniaturas lado a lado em linha */
-  gap: 20px; /* Distância de 20px entre cada miniatura */
+  position: absolute; /* Posiciona as miniaturas de forma absoluta */
+  bottom: var(--thumb-bottom); /* Posição vertical baseada na variável CSS */
+  left: var(--thumb-left); /* Posição horizontal baseada na variável CSS */
+  display: flex; /* Alinha as miniaturas em linha (Flexbox) */
+  gap: 20px; /* Espaço de 20px entre cada miniatura */
   z-index: 5; /* Mantém as miniaturas acima do slide principal */
 }
 
 .container .thumb .thumb-item {
-  width: var(--thumb-width); /* Largura definida dinamicamente por variável */
-  height: var(--thumb-height); /* Altura definida dinamicamente por variável */
-  position: relative; /* Permite posicionar elementos internos de forma absoluta */
-  flex-shrink: 0; /* Impede que a miniatura encolha se o espaço for menor */
-  z-index: 3; /* Garante a ordem de empilhamento do item */
+  width: var(--thumb-width); /* Largura da miniatura via variável */
+  height: var(--thumb-height); /* Altura da miniatura via variável */
+  position: relative; /* Permite posicionamento interno */
+  flex-shrink: 0; /* Impede que a miniatura encolha se o espaço faltar */
+  z-index: 3; /* Ordem de empilhamento */
 }
 
 .container .thumb .thumb-item img {
-  width: 100%; /* Faz a imagem preencher a largura total da miniatura */
-  height: 100%; /* Faz a imagem preencher a altura total da miniatura */
-  object-fit: cover; /* Corta a imagem proporcionalmente sem distorcer */
-  border-radius: 10px; /* Arredonda os cantos da miniatura em 10px */
-  filter: brightness(80%); /* Aplica leve escurecimento na imagem da miniatura */
+  width: 100%; /* Imagem ocupa 100% da largura da miniatura */
+  height: 100%; /* Imagem ocupa 100% da altura da miniatura */
+  object-fit: cover; /* Recorta proporcionalmente a imagem */
+  border-radius: 10px; /* Arredonda as bordas da miniatura */
+  filter: brightness(80%); /* Aplica leve escurecimento */
 }
 
 .container .thumb .content {
-  position: absolute; /* Posiciona o texto/legenda dentro da miniatura */
-  bottom: 10px; /* Distância de 10px em relação ao rodapé da miniatura */
-  left: 10px; /* Distância de 10px em relação ao canto esquerdo da miniatura */
+  position: absolute; /* Posiciona o texto dentro da miniatura */
+  bottom: 10px; /* Distância de 10px do rodapé da miniatura */
+  left: 10px; /* Distância de 10px da esquerda da miniatura */
 }
 
 .container .arrows {
-  display: flex; /* Alinha as duas setas lado a lado */
-  align-items: center; /* Centraliza verticalmente o conteúdo dos botões */
-  gap: 10px; /* Espaço de 10px entre os botões de navegação */
-  position: absolute; /* Posiciona os botões sobre a tela */
-  bottom: calc(var(--thumb-bottom) + 70px); /* Ajusta altura das setas proporcionalmente à miniatura */
-  left: 120px; /* Posiciona as setas a 120px da borda esquerda da tela */
+  display: flex; /* Alinha as setas lado a lado */
+  align-items: center; /* Centraliza verticalmente o conteúdo das setas */
+  gap: 10px; /* Espaçamento entre as setas */
+  position: absolute; /* Posiciona as setas na tela */
+  bottom: calc(
+    var(--thumb-bottom) + 70px
+  ); /* Posiciona acima das miniaturas dinamicamente */
+  left: 120px; /* Distância da borda esquerda */
   z-index: 5; /* Mantém as setas visíveis acima dos slides */
 }
 
 .container .arrows button {
-  border-radius: 10px; /* Cantos arredondados para os botões das setas */
-  border: none; /* Remove a borda padrão do botão */
-  padding: 12px 17px; /* Define o espaçamento interno do botão da seta */
-  background-color: #eee4; /* Fundo cinza claro semiauto/translúcido (hex com alfa) */
-  color: #eee; /* Cor do ícone/texto da seta em cinza claro */
-  cursor: pointer; /* Aponta a mãozinha ao passar o cursor */
-  font-weight: 700; /* Deixa o ícone da seta em negrito */
-  font-size: 1.5em; /* Aumenta o tamanho da seta */
-  transition: 0.3s; /* Transição suave de mudança de estado no hover */
+  border-radius: 10px; /* Arredonda os botões das setas */
+  border: none; /* Remove bordas */
+  padding: 12px 17px; /* Espaçamento interno do botão */
+  background-color: #eee4; /* Fundo cinza translúcido */
+  color: #eee; /* Cor do ícone da seta */
+  cursor: pointer; /* Cursor de clique */
+  font-weight: 700; /* Negrito no ícone */
+  font-size: 1.5em; /* Tamanho do ícone da seta */
+  transition: 0.3s; /* Transição suave */
 }
 
 .container .arrows button:hover {
-  background-color: #eee; /* Preenche o botão com fundo sólido no hover */
-  color: #000; /* Muda a cor da seta para preto no hover */
+  background-color: #eee; /* Fundo sólido cinza claro no hover */
+  color: #000; /* Cor da seta preta no hover */
 }
 
 /* ==========================================================================
@@ -198,34 +206,36 @@ body {
    ========================================================================== */
 
 .container.next .thumb {
-  animation: efeitoNextThumb 0.5s linear 1 forwards; /* Aplica animação no container de thumbs ao avançar */
+  animation: efeitoNextThumb 0.5s linear 1 forwards; /* Anima o container de thumbs ao avançar */
 }
 
 @keyframes efeitoNextThumb {
   from {
-    transform: translateX(150px); /* Desloca o grupo de miniaturas 150px para a direita no início */
+    transform: translateX(
+      150px
+    ); /* Desloca o grupo 150px para a direita no início */
   }
 }
 
 .container.next .thumb .thumb-item:nth-last-child(1) {
-  animation: efeitoUltimaThumb 0.5s linear 1 forwards; /* Anima a última miniatura que surge no final da lista */
+  animation: efeitoUltimaThumb 0.5s linear 1 forwards; /* Anima a última miniatura que aparece */
 }
 
 @keyframes efeitoUltimaThumb {
   from {
-    width: 0; /* Inicia a nova miniatura com largura zero */
-    opacity: 0; /* Inicia totalmente transparente */
+    width: 0; /* Começa com largura zero */
+    opacity: 0; /* Começa invisível */
   }
 }
 
 .container.back .thumb .thumb-item:nth-child(1) {
-  animation: efeitoPrimeiraThumb 0.5s linear 1 forwards; /* Anima a primeira miniatura ao voltar o slide */
+  animation: efeitoPrimeiraThumb 0.5s linear 1 forwards; /* Anima a primeira miniatura ao voltar */
 }
 
 @keyframes efeitoPrimeiraThumb {
   from {
-    width: 0; /* Inicia encolhida ao voltar */
-    opacity: 0; /* Inicia transparente ao voltar */
+    width: 0; /* Começa encolhida */
+    opacity: 0; /* Começa transparente */
   }
 }
 
@@ -234,36 +244,38 @@ body {
    ========================================================================== */
 
 .container .list .list-item:nth-child(1) {
-  z-index: 1; /* Mantém o primeiro item da lista visível na base de empilhamento */
+  z-index: 1; /* Garante o primeiro item na base */
 }
 
 .container .list .list-item:nth-child(1) .content .title,
 .container .list .list-item:nth-child(1) .content .description,
 .container .list .list-item:nth-child(1) .content .buttons {
-  transform: translateY(50px); /* Move os textos 50px para baixo no estado inicial */
-  filter: blur(20px); /* Aplica desfoque de 20px no texto antes da animação */
-  opacity: 0; /* Mantém os textos invisíveis antes de iniciar a entrada */
-  animation: exibeTexto 0.5s 0.2s linear 1 forwards; /* Animação de entrada fluida para o texto */
+  transform: translateY(
+    50px
+  ); /* Desloca o texto 50px para baixo no estado inicial */
+  filter: blur(20px); /* Aplica desfoque inicial */
+  opacity: 0; /* Fica invisível antes da animação */
+  animation: exibeTexto 0.5s 0.2s linear 1 forwards; /* Executa a animação de entrada */
 }
 
 @keyframes exibeTexto {
   to {
-    transform: translateY(0); /* Retorna o texto para sua posição vertical original */
-    filter: blur(0); /* Remove completamente o desfoque */
-    opacity: 1; /* Torna o texto 100% visível */
+    transform: translateY(0); /* Retorna à posição original */
+    filter: blur(0); /* Remove o desfoque */
+    opacity: 1; /* Torna totalmente visível */
   }
 }
 
 .container .list .list-item:nth-child(1) .content .title {
-  animation-delay: 1.2s; /* Atrasa a animação do título em 1.2 segundos */
+  animation-delay: 1.2s; /* Atraso de 1.2s para animar o título */
 }
 
 .container .list .list-item:nth-child(1) .content .description {
-  animation-delay: 1.6s; /* Atrasa a animação da descrição em 1.6 segundos */
+  animation-delay: 1.6s; /* Atraso de 1.6s para animar a descrição */
 }
 
 .container .list .list-item:nth-child(1) .content .buttons {
-  animation-delay: 2s; /* Atrasa a animação dos botões em 2 segundos */
+  animation-delay: 2s; /* Atraso de 2.0s para animar os botões */
 }
 
 /* ==========================================================================
@@ -271,44 +283,44 @@ body {
    ========================================================================== */
 
 .container.next .list .list-item:nth-child(1) {
-  z-index: 2; /* Garante que a imagem em transição fique no topo durante o efeito */
+  z-index: 2; /* Eleva a camada do item ativo durante a transição */
 }
 
 .container.next .list .list-item:nth-child(1) img {
-  width: var(--thumb-width);   /* Inicia a animação com a largura idêntica à da miniatura */
-  height: var(--thumb-height); /* Inicia com a altura idêntica à da miniatura */
-  position: absolute; /* Posiciona a imagem absolutamente para animar a expansão */
-  bottom: var(--thumb-bottom); /* Alinha o ponto de partida com a posição da miniatura */
-  left: var(--thumb-left);     /* Alinha o ponto de partida com o canto da miniatura */
-  border-radius: 10px; /* Começa com cantos arredondados como a miniatura */
-  animation: expandeImagem 0.5s linear 1 forwards; /* Aplica animação de crescimento da imagem */
+  width: var(--thumb-width); /* Começa com o tamanho da miniatura */
+  height: var(--thumb-height); /* Começa com a altura da miniatura */
+  position: absolute; /* Posicionamento absoluto para animar expansão */
+  bottom: var(--thumb-bottom); /* Alinha com a posição da miniatura */
+  left: var(--thumb-left); /* Alinha com a posição da miniatura */
+  border-radius: 10px; /* Cantos arredondados iguais à miniatura */
+  animation: expandeImagem 0.5s linear 1 forwards; /* Expande para tela cheia */
 }
 
 @keyframes expandeImagem {
   to {
-    bottom: 0; /* Expande até encostar na borda inferior da tela */
-    left: 0; /* Expande até encostar na borda esquerda da tela */
-    width: 100%; /* Ocupa a largura total da janela */
-    height: 100%; /* Ocupa a altura total da janela */
-    border-radius: 0; /* Remove os cantos arredondados na tela cheia */
+    bottom: 0; /* Encosta no rodapé */
+    left: 0; /* Encosta na esquerda */
+    width: 100%; /* Ocupa 100% da largura */
+    height: 100%; /* Ocupa 100% da altura */
+    border-radius: 0; /* Remove bordas arredondadas em tela cheia */
   }
 }
 
 .container.back .list .list-item:nth-child(1) img {
-  position: absolute; /* Posicionamento absoluto para animação de recuo */
-  bottom: 0; /* Começa ocupando a tela cheia a partir do rodapé */
-  left: 0; /* Começa ocupando a tela cheia a partir da esquerda */
+  position: absolute; /* Posicionamento absoluto */
+  bottom: 0; /* Cobre a tela cheia na base */
+  left: 0; /* Cobre a tela cheia na esquerda */
   z-index: 2; /* Mantém no topo enquanto encolhe */
-  animation: sumiImagem 0.5s linear 1 forwards; /* Executa a animação de encolhimento */
+  animation: sumiImagem 0.5s linear 1 forwards; /* Executa encolhimento */
 }
 
 @keyframes sumiImagem {
   to {
-    width: var(--thumb-width);   /* Encolhe até atingir a largura da miniatura */
-    height: var(--thumb-height); /* Encolhe até atingir a altura da miniatura */
-    border-radius: 10px; /* Recupera os cantos arredondados */
-    left: var(--thumb-left);     /* Retorna exatamente para a posição horizontal da miniatura */
-    bottom: var(--thumb-bottom); /* Retorna exatamente para a posição vertical da miniatura */
+    width: var(--thumb-width); /* Encolhe até a largura da miniatura */
+    height: var(--thumb-height); /* Encolhe até a altura da miniatura */
+    border-radius: 10px; /* Restaura bordas arredondadas */
+    left: var(--thumb-left); /* Volta para a posição da miniatura */
+    bottom: var(--thumb-bottom); /* Volta para a posição da miniatura */
   }
 }
 
@@ -319,83 +331,67 @@ body {
 /* Tablets e telas médias (até 992px) */
 @media screen and (max-width: 992px) {
   :root {
-    --thumb-width: 110px; /* Reduz a largura da miniatura para tablets */
-    --thumb-height: 160px; /* Reduz a altura da miniatura para tablets */
+    --thumb-width: 110px; /* Reduz a largura da miniatura */
+    --thumb-height: 160px; /* Reduz a altura da miniatura */
   }
 
   .container .list .list-item .content {
-    padding-right: 15%; /* Reduz o espaçamento à direita para aproveitar melhor a tela */
-  }
-
-  .container .list .list-item .title {
-    font-size: 3.5em; /* Reduz a fonte do título para não quebrar excessivamente */
+    padding-right: 15%; /* Ajusta o padding direito do texto */
   }
 }
 
 /* Celulares em geral (até 768px) */
 @media screen and (max-width: 768px) {
   :root {
-    --thumb-width: 90px; /* Reduz a largura das miniaturas para telas de celulares */
-    --thumb-height: 130px; /* Reduz a altura das miniaturas para telas de celulares */
-    --thumb-bottom: 25px; /* Aproxima as miniaturas do fundo da tela */
-    --thumb-left: 50%; /* Mantém o alinhamento da metade da tela */
+    --thumb-width: 90px; /* Reduz mais a largura da miniatura */
+    --thumb-height: 130px; /* Reduz mais a altura da miniatura */
+    --thumb-bottom: 25px; /* Aproxima as miniaturas do fundo */
+    --thumb-left: 50%; /* Mantém centralizado horizontalmente */
   }
 
   .header {
-    width: 90%; /* Expande a largura do cabeçalho para ocupar 90% da tela */
+    width: 90%; /* Aumenta a largura do header em telas menores */
   }
 
   .header a {
-    margin-right: 20px; /* Diminui o espaçamento entre os links do cabeçalho */
-    font-size: 11px; /* Diminui o tamanho da fonte do menu */
+    margin-right: 20px; /* Reduz o espaço entre os links do topo */
+    font-size: 11px; /* Diminui a fonte do link do topo */
   }
 
   .container .list .list-item .content {
-    top: 15%; /* Reorganiza o bloco de texto mais para o topo */
-    left: 5%; /* Alinha o texto a 5% da borda esquerda */
-    right: auto; /* Anula o alinhamento à direita prévio */
-    width: 90%; /* Faz a caixa de texto ocupar a maior parte da largura */
-    padding-right: 0; /* Zera o padding interno à direita */
-  }
-
-  .container .list .list-item .title {
-    font-size: 2.2em; /* Diminui significativamente o título para telas móbile */
+    top: 15%; /* Reposiciona o texto mais para o topo */
+    left: 5%; /* Alinha à esquerda com margem de 5% */
+    right: auto; /* Cancela alinhamento à direita */
+    width: 90%; /* Caixa de texto ocupa 90% da largura */
+    padding-right: 0; /* Remove padding direito extra */
   }
 
   .container .list .list-item .description {
-    font-size: 1.1em; /* Reduz a fonte da descrição para melhorar legibilidade */
+    font-size: 1rem; /* Ajusta o tamanho da descrição para mobile */
   }
 
   .container .arrows {
-    left: 5%; /* Reposiciona as setas para a borda esquerda */
-    bottom: 170px; /* Levanta as setas para ficarem acima das miniaturas menores */
+    left: 5%; /* Posiciona as setas à esquerda */
+    bottom: 170px; /* Eleva as setas para não colidir com miniaturas */
   }
 
   .container .thumb {
-    gap: 10px; /* Diminui a distância entre as miniaturas para caberem lado a lado */
+    gap: 10px; /* Reduz a distância entre miniaturas */
   }
 }
 
 /* Celulares pequenos (até 480px) */
 @media screen and (max-width: 480px) {
   :root {
-    --thumb-width: 75px; /* Define o menor tamanho de largura para miniaturas */
-    --thumb-height: 110px; /* Define a menor altura para as miniaturas */
-  }
-
-  .container .list .list-item .title {
-    font-size: 1.8em; /* Ajusta o título para telas muito estreitas */
-  }
-
-  .container .list .list-item .description {
-    font-size: 0.95em; /* Ajusta a descrição para caber sem rolar a tela */
+    --thumb-width: 75px; /* Tamanho mínimo de largura da miniatura */
+    --thumb-height: 110px; /* Tamanho mínimo de altura da miniatura */
   }
 
   .container .thumb .content h3 {
-    font-size: 10px; /* Ajusta o título interno das miniaturas */
+    font-size: 10px; /* Reduz título interno da miniatura */
   }
 
   .container .thumb .content p {
-    font-size: 8px; /* Ajusta a legenda/descrição dentro das miniaturas */
+    font-size: 8px; /* Reduz subtítulo interno da miniatura */
   }
 }
